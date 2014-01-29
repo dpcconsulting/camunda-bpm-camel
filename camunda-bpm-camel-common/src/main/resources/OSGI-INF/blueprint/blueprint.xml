@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="processEngine" interface="org.camunda.bpm.engine.ProcessEngine"></reference>
+
+    <bean id="camunda-bpm-resolver" class="org.camunda.bpm.camel.component.CamundaComponentResolver">
+        <property name="processEngine" ref="processEngine"></property>
+    </bean>
+
+    <service interface="org.apache.camel.spi.ComponentResolver" ref="camunda-bpm-resolver">
+        <service-properties>
+            <entry key="component" value="camunda-bpm"></entry>
+        </service-properties>
+    </service>
+
+</blueprint>
